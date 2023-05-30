@@ -1,6 +1,7 @@
 from aiogram import Bot, Dispatcher
 from config.config import get_config, Config
 from handlers.user_handlers import user_router
+from keyboards.main_menu import main_menu
 import asyncio
 
 async def main():
@@ -15,6 +16,7 @@ async def main():
     # Регистрация роутеров
     dp.include_router(user_router)
 
+    await main_menu(bot)
     await bot.delete_webhook(drop_pending_updates=True)
     await dp.start_polling(bot)
 
